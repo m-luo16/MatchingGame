@@ -1,5 +1,6 @@
 package me.powerchelle.productmatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -127,7 +128,8 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
             }
 
             if (score == 15) {
-                Toast.makeText(this, "YOU WON!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, WinActivity.class);
+                startActivity(intent);
             }
         } else if (clicked == 0) {
             turnOver = false;

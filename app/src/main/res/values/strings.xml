@@ -2,4 +2,8 @@
     <string name="app_name">ProductMatch</string>
     <string name="score_placeholder">Score: 0</string>
     <string name="score">Score: %d</string>
+    <string name="play">PLAY</string>
+    <string name="product_match">Product Match</string>
+    <string name="you_won">You Won!</string>
+    <string name="main_menu">Main Menu</string>
 </resources>
