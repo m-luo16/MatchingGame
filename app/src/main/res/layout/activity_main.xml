@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
@@ -19,6 +20,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameBoard"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="5"/>

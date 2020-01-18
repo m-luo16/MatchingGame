@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ProductMatch</string>
     <string name="score_placeholder">Score: 10</string>
+    <string name="score">Score: %d</string>
 </resources>
