@@ -1,42 +1,31 @@
 package me.powerchelle.productmatch;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import static me.powerchelle.productmatch.JsonReader.readJsonFromFile;
-import static me.powerchelle.productmatch.JsonReader.readJsonFromUrl;
 
 public class MainActivity extends AppCompatActivity implements GridViewAdapter.ItemClickListener {
-    private RecyclerView gameBoard;
     private TextView scoreText;
-    private GridViewAdapter gridViewAdapter;
     private GridLayoutManager gridLayoutManager;
     private List<Product> reducedList = null;
     private boolean turnOver = false;
@@ -48,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView gameBoard = findViewById(R.id.gameBoard);
         scoreText = findViewById(R.id.scoreText);
-        gameBoard = findViewById(R.id.gameBoard);
 
         JSONObject productJSON = readFromFile(getResources().openRawResource(R.raw.products));
         List<Product> productList = null;
@@ -63,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         assert productList != null;
         reducedList = generateRandomList(productList);
 
-        gridViewAdapter = new GridViewAdapter(this, reducedList);
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(this, reducedList);
         gridViewAdapter.setClickListener(this);
         gridLayoutManager = new GridLayoutManager(this, 5);
         gameBoard.setLayoutManager(gridLayoutManager);
@@ -76,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         Collections.shuffle(productList);
 
         for (int i = 0; i < 15; i++) {
-            Product copy = new Product(productList.get(i).getId(), productList.get(i).getTitle(), productList.get(i).getImgSrc()) ;
+            Product copy = new Product(productList.get(i).getId(), productList.get(i).getTitle(), productList.get(i).getImgSrc());
             shuffledList.add(productList.get(i));
             shuffledList.add(copy);
         }
@@ -135,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
             } else {
                 view.setClickable(true);
                 gridLayoutManager.findViewByPosition(lastSeenPos).setClickable(true);
-
             }
 
             if (score == 15) {
@@ -146,58 +134,5 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
 
         }
     }
-//
-//    @Override
-//    public void onItemClick(View view, int position) {
-//        if (!flippedCards.contains(getAdapterPosition())) {
-//            Glide.with(v).load(products.get(getAdapterPosition()).getImgSrc()).into(imageView);
-//            cardView.setCardBackgroundColor(context.getColor(R.color.colorAccent));
-//        } else if (flippedCards.contains(getAdapterPosition())) {
-//            imageView.setImageResource(R.drawable.shopify_bag);
-//            cardView.setCardBackgroundColor(context.getColor(R.color.cardview_dark_background));
-//        }
-//
-//        if (!reducedList.get(position).getFlipped() && !turnOver) {
-//            if (clicked == 0) {
-//                lastSeenPos = position;
-//            }
-//            view.setClickable(false);
-//            clicked++;
-//        } else if (turnOver) {
-//            clicked--;
-//        }
-//
-//        if (clicked == 2) {
-//            turnOver = true;
-//            gridViewAdapter.setFlippedCards(new ArrayList<>(Arrays.asList(lastSeenPos, position)));
-//            if (reducedList.get(lastSeenPos).getId().equals(reducedList.get(position).getId())) {
-//                score += 1;
-//                scoreText.setText(String.format(this.getString(R.string.score), score));
-//
-//                view.setClickable(false);
-//                gridLayoutManager.findViewByPosition(lastSeenPos).setClickable(false);
-//                turnOver = false;
-//                clicked = 0;
-//            }
-//            for (int i = 0; i < reducedList.size(); i++) {
-//                gridLayoutManager.findViewByPosition(i).setClickable(false);
-//
-//            }
-//            view.setClickable(true);
-//            gridLayoutManager.findViewByPosition(lastSeenPos).setClickable(true);
-//
-//            if (score == 15) {
-//                Toast.makeText(this, "YOU WON!", Toast.LENGTH_SHORT);
-//                for (int i = 0; i < reducedList.size(); i++) {
-//                    gridLayoutManager.findViewByPosition(i).setClickable(false);
-//
-//                }
-//            }
-//        } else if (clicked == 0) {
-//            turnOver = false;
-//            gridViewAdapter.setFlippedCards(null);
-//        }
-//
-//    }
 
 }

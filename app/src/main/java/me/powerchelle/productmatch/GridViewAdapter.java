@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHolder> {
@@ -20,7 +17,6 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     private List<Product> products;
     private LayoutInflater inflater;
     private ItemClickListener clickListener;
-    private List<Integer> flippedCards = null;
 
     public GridViewAdapter(Context context, List<Product> products) {
         this.context = context;
@@ -43,10 +39,6 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     @Override
     public int getItemCount() {
         return products.size();
-    }
-
-    public void setFlippedCards(List<Integer> positions) {
-        this.flippedCards = positions;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
