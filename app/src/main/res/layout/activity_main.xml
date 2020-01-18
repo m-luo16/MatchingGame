@@ -17,10 +17,12 @@
         android:text="@string/score_placeholder"
         android:textSize="25sp" />
 
-    <GridView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="5"/>
+
+
 
 </LinearLayout>

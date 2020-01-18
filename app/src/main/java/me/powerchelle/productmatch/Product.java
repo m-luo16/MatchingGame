@@ -4,6 +4,7 @@ public class Product {
     private String id;
     private String title;
     private String imgSrc;
+    private Boolean flipped = false;
 
     Product(String id, String title, String imgSrc) {
         this.id = id;
@@ -34,4 +35,14 @@ public class Product {
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
+
+    public Boolean getFlipped() {
+        return flipped;
+    }
+
+    public void setFlipped(Boolean flipped) {
+        this.flipped = flipped;
+    }
 }
+
+
