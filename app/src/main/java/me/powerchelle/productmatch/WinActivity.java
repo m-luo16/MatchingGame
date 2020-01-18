@@ -20,6 +20,7 @@ public class WinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WinActivity.this, MainMenu.class);
                 startActivity(intent);
+                finish();
             }
         });
 

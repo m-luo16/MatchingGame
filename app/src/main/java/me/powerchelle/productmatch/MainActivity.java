@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
             if (score == 15) {
                 Intent intent = new Intent(MainActivity.this, WinActivity.class);
                 startActivity(intent);
+                finish();
             }
         } else if (clicked == 0) {
             turnOver = false;
